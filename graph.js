@@ -21,7 +21,7 @@ function (angular, $, moment, _, kbn, GraphTooltip, thresholdManExports) {
   var module = angular.module('grafana.directives');
   var labelWidthCache = {};
 
-  module.directive('grafanaGraph', function($rootScope, timeSrv) {
+  module.directive('grafanaAnalyticGraph', function($rootScope, $log) {
     return {
       restrict: 'A',
       template: '<div> </div>',
@@ -520,12 +520,7 @@ function (angular, $, moment, _, kbn, GraphTooltip, thresholdManExports) {
         });
 
         elem.bind("plotselected", function (event, ranges) {
-          scope.$apply(function() {
-            timeSrv.setTime({
-              from  : moment.utc(ranges.xaxis.from),
-              to    : moment.utc(ranges.xaxis.to),
-            });
-          });
+          $log.log('plotselected', event, ranges);
         });
       }
     };

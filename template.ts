@@ -1,5 +1,5 @@
 var template = `
-<div class="graph-wrapper" ng-class="{'graph-legend-rightside': ctrl.panel.legend.rightSide}">
+<div class="analytic-graph-wrapper" ng-class="{'graph-legend-rightside': ctrl.panel.legend.rightSide}">
   <div class="graph-canvas-wrapper">
 
     <div ng-if="datapointsWarning" class="datapoints-warning">
@@ -12,7 +12,7 @@ var template = `
       </span>
     </div>
 
-    <div grafana-graph class="histogram-chart" ng-dblclick="ctrl.zoomOut()">
+    <div grafana-analytic-graph class="histogram-chart" ng-dblclick="ctrl.zoomOut()">
     </div>
 
   </div>

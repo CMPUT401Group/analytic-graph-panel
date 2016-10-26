@@ -15,7 +15,7 @@ import config from 'app/core/config';
 import * as fileExport from 'app/core/utils/file_export';
 import {MetricsPanelCtrl, alertTab} from 'app/plugins/sdk';
 
-class GraphCtrl extends MetricsPanelCtrl {
+class AnalyticGraphCtrl extends MetricsPanelCtrl {
   static template = template;
 
   hiddenSeries: any = {};
@@ -332,4 +332,4 @@ class GraphCtrl extends MetricsPanelCtrl {
 
 }
 
-export {GraphCtrl, GraphCtrl as PanelCtrl}
+export {AnalyticGraphCtrl, AnalyticGraphCtrl as PanelCtrl}

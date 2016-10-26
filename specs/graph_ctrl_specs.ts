@@ -3,17 +3,17 @@
 import {describe, beforeEach, it, sinon, expect, angularMocks} from '../../../../../test/lib/common';
 
 import angular from 'angular';
-import {GraphCtrl} from '../module';
+import {AnalyticGraphCtrl} from '../module';
 import helpers from '../../../../../test/specs/helpers';
 
-describe('GraphCtrl', function() {
+describe('AnalyticGraphCtrl', function() {
   var ctx = new helpers.ControllerTestContext();
 
   beforeEach(angularMocks.module('grafana.services'));
   beforeEach(angularMocks.module('grafana.controllers'));
 
   beforeEach(ctx.providePhase());
-  beforeEach(ctx.createPanelController(GraphCtrl));
+  beforeEach(ctx.createPanelController(AnalyticGraphCtrl));
   beforeEach(() => {
     ctx.ctrl.annotationsPromise = Promise.resolve({});
     ctx.ctrl.updateTimeRange();

@@ -10,7 +10,7 @@ import TimeSeries from 'app/core/time_series2';
 import moment from 'moment';
 import {Emitter} from 'app/core/core';
 
-describe('grafanaGraph', function() {
+describe('grafanaAnalyticGraph', function() {
 
   beforeEach(angularMocks.module('grafana.directives'));
 
@@ -81,7 +81,7 @@ describe('grafanaGraph', function() {
 
           setupFunc(ctrl, ctx.data);
 
-          var element = angular.element("<div style='width:" + elementWidth + "px' grafana-graph><div>");
+          var element = angular.element("<div style='width:" + elementWidth + "px' grafana-analytic-graph><div>");
           $compile(element)(scope);
           scope.$digest();
 
