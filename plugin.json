@@ -1,7 +1,7 @@
 {
   "type": "panel",
   "name": "Analytic Graph",
-  "id": "analytical-graph",
+  "id": "analytic-graph",
 
   "info": {
     "author": {
