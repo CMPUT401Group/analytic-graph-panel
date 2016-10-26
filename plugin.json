@@ -1,11 +1,11 @@
 {
   "type": "panel",
-  "name": "Graph",
-  "id": "graph",
+  "name": "Analytic Graph",
+  "id": "analaytic-graph",
 
   "info": {
     "author": {
-      "name": "Grafana Project",
+      "name": "Joey Andres",
       "url": "http://grafana.org"
 },
     "logos": {
