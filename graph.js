@@ -21,13 +21,10 @@ function (angular, $, moment, _, kbn, GraphTooltip, thresholdManExports) {
   var module = angular.module('grafana.directives');
   var labelWidthCache = {};
 
-  module.directive('grafanaAnalyticGraph', function($rootScope, $log) {
+  module.directive('grafanaAnalyticGraph', function($rootScope, $log, $compile) {
     return {
       restrict: 'A',
-      template:
-          '<div>' +
-          '<grafana-analytic-context-menu></grafana-analytic-context-menu>' +
-          '</div>',
+      template: '<div> </div>',
       link: function(scope, elem) {
         var ctrl = scope.ctrl;
         var dashboard = ctrl.dashboard;
@@ -38,6 +35,9 @@ function (angular, $, moment, _, kbn, GraphTooltip, thresholdManExports) {
         var rootScope = scope.$root;
         var panelWidth = 0;
         var thresholdManager = new thresholdManExports.ThresholdManager(ctrl);
+
+        // analytic-graph
+        var contextMenu = null;  // No context menu associated by default.
 
         rootScope.onAppEvent('setCrosshair', function(event, info) {
           // do not need to to this if event is from this panel
@@ -518,12 +518,29 @@ function (angular, $, moment, _, kbn, GraphTooltip, thresholdManExports) {
           return "%H:%M";
         }
 
+        function removeContextMenu() {
+          // Only remove if already exist.
+          var contextMenuExist = !!contextMenu;
+          if (contextMenuExist) {
+            contextMenu.remove();  // Remove it from the DOM.
+            contextMenu = null;  // Garbage collection.
+          }
+        }
+
         new GraphTooltip(elem, dashboard, scope, function() {
           return sortedSeries;
         });
 
-        elem.bind("plotselected", function (event, ranges) {
-          $log.log('plotselected', event, ranges);
+        elem.bind("plotselected", function (/*event, ranges*/) {
+          removeContextMenu();
+          contextMenu = $compile(
+            '<grafana-analytic-graph-context-menu>' +
+            '</grafana-analytic-graph-context-menu>')(scope);
+          elem.append(contextMenu);
+        });
+
+        elem.bind("plotunselected", function (/*event, ranges*/) {
+          removeContextMenu();
         });
       }
     };
