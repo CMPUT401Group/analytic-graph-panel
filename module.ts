@@ -1,5 +1,6 @@
 ///<reference path="../../../headers/common.d.ts" />
 
+import './context-menu';
 import './graph';
 import './legend';
 import './series_overrides_ctrl';

@@ -24,7 +24,10 @@ function (angular, $, moment, _, kbn, GraphTooltip, thresholdManExports) {
   module.directive('grafanaAnalyticGraph', function($rootScope, $log) {
     return {
       restrict: 'A',
-      template: '<div> </div>',
+      template:
+          '<div>' +
+          '<grafana-analytic-context-menu></grafana-analytic-context-menu>' +
+          '</div>',
       link: function(scope, elem) {
         var ctrl = scope.ctrl;
         var dashboard = ctrl.dashboard;
