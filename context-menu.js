@@ -6,7 +6,7 @@ function (angular) {
 
   var module = angular.module('grafana.directives');
 
-  module.directive('grafanaAnalyticGraphContextMenu', function ($log) {
+  module.directive('grafanaAnalyticGraphContextMenu', function ($log, backendSrv) {
     return {
       restrict: 'E',
       template: '<div class="dropdown open">' +
@@ -19,6 +19,9 @@ function (angular) {
       '  </ul>' +
       '</div>',
       link: function () {
+        backendSrv.get('api/plugins/analytic-engine-app/settings').then(function(results) {
+          console.log(results);
+        });
         $log.log('grafana-analytic-graph-context-menu linked.');
       }
     };
