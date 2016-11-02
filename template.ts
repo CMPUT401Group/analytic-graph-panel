@@ -1,5 +1,5 @@
 var template = `
-<div class="analytic-graph-wrapper" ng-class="{'graph-legend-rightside': ctrl.panel.legend.rightSide}">
+<div class="graph-wrapper" ng-class="{'graph-legend-rightside': ctrl.panel.legend.rightSide}">
   <div class="graph-canvas-wrapper">
 
     <div ng-if="datapointsWarning" class="datapoints-warning">

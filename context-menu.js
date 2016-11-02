@@ -11,18 +11,41 @@ function (angular) {
       restrict: 'E',
       template: '<div class="dropdown open">' +
       '  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">' +
-      '    <li><a tabindex="-1" href="#">Action</a></li>' +
-      '    <li><a tabindex="-1" href="#">Another action</a></li>' +
-      '    <li><a tabindex="-1" href="#">Something else here</a></li>' +
-      '    <li class="divider"></li>' +
-      '    <li><a tabindex="-1" href="#">Separated link</a></li>' +
+      '    <li><a tabindex="-1" href="#" ng-click="markThreshold()">Mark Threshold</a></li>' +
+      '    <li><a tabindex="-1" href="#">Mark Covariance</a></li>' +
+      '    <li><a tabindex="-1" href="#">Mark Linear Correlation</a></li>' +
       '  </ul>' +
       '</div>',
-      link: function () {
-        backendSrv.get('api/plugins/analytic-engine-app/settings').then(function(results) {
-          console.log(results);
-        });
-        $log.log('grafana-analytic-graph-context-menu linked.');
+      link: function (scope) {
+        var self = this;
+
+        self.analyticGraphAppConfig = null;
+        updateAnalyticGraphAppConfig();
+
+        function getConfig(cb) {
+          backendSrv.get('api/plugins/analytic-engine-app/settings').then(function(results) {
+            cb(results);
+          });
+        }
+
+        function updateAnalyticGraphAppConfig(cb) {
+          getConfig(function(results) {
+            $log.log('analyticGraphAppConfig updated.');
+            self.analyticGraphAppConfig = results;
+            cb();
+          });
+        }
+
+        scope.markThreshold = function() {
+          if (self.analyticGraphAppConfig) {
+            $log.log('POP');
+          } else {
+            updateAnalyticGraphAppConfig(function() {
+              $log.log('POP');
+            });
+          }
+        };
+
       }
     };
   });
