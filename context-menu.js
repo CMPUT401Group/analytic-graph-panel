@@ -43,7 +43,7 @@ function (angular, _) {
           if (markThresholdModalScope) { return; }
 
           markThresholdModalScope = $rootScope.$new();
-          var helpModal = $modal({
+          var markThresholdModal = $modal({
             template: 'public/app/partials/modal.html',
             persist: false,
             show: false,
@@ -51,8 +51,12 @@ function (angular, _) {
             keyboard: false
           });
 
+          markThresholdModalScope.modal = {};
+          markThresholdModalScope.modal.title = 'Mark Threshold';
+          markThresholdModalScope.modal.body = 'Dummy Body';
+
           markThresholdModalScope.$on('$destroy', function() { markThresholdModalScope = null; });
-          $q.when(helpModal).then(function(modalEl) { modalEl.modal('show'); });
+          $q.when(markThresholdModal).then(function(modalEl) { modalEl.modal('show'); });
         }
 
         scope.markThreshold = function() {
