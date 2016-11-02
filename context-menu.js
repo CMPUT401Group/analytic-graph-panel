@@ -1,12 +1,13 @@
 define([
-    'angular'
+    'angular',
+    'lodash'
 ],
-function (angular) {
+function (angular, _) {
   'use strict';
 
   var module = angular.module('grafana.directives');
 
-  module.directive('grafanaAnalyticGraphContextMenu', function ($log, backendSrv) {
+  module.directive('grafanaAnalyticGraphContextMenu', function ($log, $modal, $q, $rootScope, backendSrv) {
     return {
       restrict: 'E',
       template: '<div class="dropdown open">' +
@@ -17,9 +18,8 @@ function (angular) {
       '  </ul>' +
       '</div>',
       link: function (scope) {
-        var self = this;
-
-        self.analyticGraphAppConfig = null;
+        var analyticGraphAppConfig = null,
+          markThresholdModalScope = null;
         updateAnalyticGraphAppConfig();
 
         function getConfig(cb) {
@@ -31,21 +31,41 @@ function (angular) {
         function updateAnalyticGraphAppConfig(cb) {
           getConfig(function(results) {
             $log.log('analyticGraphAppConfig updated.');
-            self.analyticGraphAppConfig = results;
-            cb();
+            analyticGraphAppConfig = results;
+
+            if (_.isFunction(cb)) {
+              cb();
+            }
           });
         }
 
+        function popMarkThreshold() {
+          if (markThresholdModalScope) { return; }
+
+          markThresholdModalScope = $rootScope.$new();
+          var helpModal = $modal({
+            template: 'public/app/partials/help_modal.html',
+            persist: false,
+            show: false,
+            scope: markThresholdModalScope,
+            keyboard: false
+          });
+
+          markThresholdModalScope.$on('$destroy', function() { markThresholdModalScope = null; });
+          $q.when(helpModal).then(function(modalEl) { modalEl.modal('show'); });
+        }
+
         scope.markThreshold = function() {
-          if (self.analyticGraphAppConfig) {
+          if (analyticGraphAppConfig) {
             $log.log('POP');
+            popMarkThreshold();
           } else {
             updateAnalyticGraphAppConfig(function() {
               $log.log('POP');
+              popMarkThreshold();
             });
           }
         };
-
       }
     };
   });
