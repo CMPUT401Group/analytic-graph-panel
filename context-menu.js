@@ -51,7 +51,7 @@ function (angular, _) {
             keyboard: false
           });
 
-          markThresholdModalScope.thresholdRule = null;
+          markThresholdModalScope.thresholdRule = '>=';
 
           markThresholdModalScope.mark = function() {
             $log.log(markThresholdModalScope.thresholdRule);
@@ -62,6 +62,7 @@ function (angular, _) {
             }
 
             // TODO: Create a threshold object here and send it to analytic engine.
+            // TODO: A popup somewhere indicating success or failure.
 
             markThresholdModalScope.dismiss();  // Destroy this directive.
           };
