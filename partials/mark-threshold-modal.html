@@ -1,14 +1,16 @@
 <div class="modal-body">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Mark Failure</h3>
+        <h2 class="modal-header-title">
+            <i class="fa fa-chevron-right"></i>
+            <span class="p-l-1">Mark Failure</span>
+        </h2>
     </div>
 
     <div class="modal-content">
         <div class="gf-form">
             <label class="gf-form-label width-10">Threshold rule</label>
-            <div class="gf-form-select-wrapper max-width-3">
-                <select class="gf-form-input">
+            <div class="gf-form-select-wrapper max-width-4">
+                <select class="gf-form-input" ng-model="thresholdRule">
                     <option label="<" value="<" selected="selected">&lt;</option>
                     <option label="<=" value="<=">&lt;=</option>
                     <option label="=" value="=">=</option>
@@ -21,6 +23,6 @@
 
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" ng-click="dismiss()">Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click="dismiss()">Mark</button>
+        <button type="button" class="btn btn-primary" ng-click="mark()">Mark</button>
     </div>
 </div>

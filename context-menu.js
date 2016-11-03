@@ -51,6 +51,21 @@ function (angular, _) {
             keyboard: false
           });
 
+          markThresholdModalScope.thresholdRule = null;
+
+          markThresholdModalScope.mark = function() {
+            $log.log(markThresholdModalScope.thresholdRule);
+
+            // This is unlikely, but might as well.
+            if (_.isNull(markThresholdModalScope.thresholdRule)) {
+              return;
+            }
+
+            // TODO: Create a threshold object here and send it to analytic engine.
+
+            markThresholdModalScope.dismiss();  // Destroy this directive.
+          };
+
           markThresholdModalScope.$on('$destroy', function() { markThresholdModalScope = null; });
           $q.when(markThresholdModal).then(function(modalEl) { modalEl.modal('show'); });
         }
