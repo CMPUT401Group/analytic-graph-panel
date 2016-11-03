@@ -1,21 +1,26 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Marking Failure</h3>
-</div>
 <div class="modal-body">
-    <div class="gf-form">
-        <label class="gf-form-label width-5">Threshold rule</label>
-        <div class="gf-form-select-wrapper max-width-15">
-            <select class="gf-form-input">
-                <option label="<" value="<" selected="selected">&lt;</option>
-                <option label="<=" value="<=">&lt;=</option>
-                <option label="=" value="=">=</option>
-                <option label=">" value=">">&gt;=</option>
-                <option label=">=" value=">=">&gt;</option>
-            </select>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Mark Failure</h3>
+    </div>
+
+    <div class="modal-content">
+        <div class="gf-form">
+            <label class="gf-form-label width-10">Threshold rule</label>
+            <div class="gf-form-select-wrapper max-width-3">
+                <select class="gf-form-input">
+                    <option label="<" value="<" selected="selected">&lt;</option>
+                    <option label="<=" value="<=">&lt;=</option>
+                    <option label="=" value="=">=</option>
+                    <option label=">" value=">">&gt;=</option>
+                    <option label=">=" value=">=">&gt;</option>
+                </select>
+            </div>
         </div>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-danger" ng-click="dismiss()">Close</button>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="dismiss()">Mark</button>
+    </div>
 </div>
