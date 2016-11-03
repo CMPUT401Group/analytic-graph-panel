@@ -44,16 +44,12 @@ function (angular, _) {
 
           markThresholdModalScope = $rootScope.$new();
           var markThresholdModal = $modal({
-            template: 'public/app/partials/modal.html',
+            template: 'public/app/plugins/panel/analytic-graph/partials/mark-threshold-modal.html',
             persist: false,
             show: false,
             scope: markThresholdModalScope,
             keyboard: false
           });
-
-          markThresholdModalScope.modal = {};
-          markThresholdModalScope.modal.title = 'Mark Threshold';
-          markThresholdModalScope.modal.body = 'Dummy Body';
 
           markThresholdModalScope.$on('$destroy', function() { markThresholdModalScope = null; });
           $q.when(markThresholdModal).then(function(modalEl) { modalEl.modal('show'); });
