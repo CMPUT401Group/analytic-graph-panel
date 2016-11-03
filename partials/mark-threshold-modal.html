@@ -3,11 +3,18 @@
     <h3>Marking Failure</h3>
 </div>
 <div class="modal-body">
-
-    <div>
-        Test body
+    <div class="gf-form">
+        <label class="gf-form-label width-5">Threshold rule</label>
+        <div class="gf-form-select-wrapper max-width-15">
+            <select class="gf-form-input">
+                <option label="<" value="<" selected="selected">&lt;</option>
+                <option label="<=" value="<=">&lt;=</option>
+                <option label="=" value="=">=</option>
+                <option label=">" value=">">&gt;=</option>
+                <option label=">=" value=">=">&gt;</option>
+            </select>
+        </div>
     </div>
-
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-danger" ng-click="dismiss()">Close</button>
