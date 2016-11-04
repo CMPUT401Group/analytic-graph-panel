@@ -477,7 +477,7 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
           scope.metricNameAttr = metricName;
           scope.timeRangeAttr = timeRange;
 
-          $log.log(scope.metricNameAttr);
+          $log.log(data);
 
           removeContextMenu();
           contextMenu = $compile(
