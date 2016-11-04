@@ -67,10 +67,18 @@ function (angular, _) {
               return;
             }
 
+            // todo: derive the value here.
+
             getConfig(function(config) {
               var url = config.jsonData.analyticEngineURL;
               $http.post(url + '/pattern/threshold', {
-                threshold: [{target: scope.metricName}]
+                threshold: [
+                  {
+                    target: scope.metricName,
+                    thresholdRule: markThresholdModalScope.thresholdRule,
+                    value: 5
+                  }
+                ]
               }).then(function(response) {
                 console.log(response);
               }, function(response) {
