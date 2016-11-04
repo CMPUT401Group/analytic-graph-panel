@@ -67,7 +67,7 @@ function (angular, _) {
               return;
             }
 
-            // todo: derive the value here.
+            var thresholdRule = markThresholdModalScope.thresholdRule;
 
             getConfig(function(config) {
               var url = config.jsonData.analyticEngineURL;
@@ -75,7 +75,7 @@ function (angular, _) {
                 threshold: [
                   {
                     target: scope.metricName,
-                    thresholdRule: markThresholdModalScope.thresholdRule,
+                    thresholdRule: thresholdRule,
                     value: 5
                   }
                 ]
