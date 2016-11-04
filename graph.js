@@ -20,7 +20,7 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
   var module = angular.module('grafana.directives');
   var labelWidthCache = {};
 
-  module.directive('grafanaAnalyticGraph', function($compile, $log) {
+  module.directive('grafanaAnalyticGraph', function($compile) {
     return {
       restrict: 'A',
       template: '<div> </div>',
