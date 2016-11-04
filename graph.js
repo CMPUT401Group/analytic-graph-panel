@@ -20,7 +20,7 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
   var module = angular.module('grafana.directives');
   var labelWidthCache = {};
 
-  module.directive('grafanaAnalyticGraph', function($compile) {
+  module.directive('grafanaAnalyticGraph', function($compile, $log) {
     return {
       restrict: 'A',
       template: '<div> </div>',
@@ -468,7 +468,9 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
           return sortedSeries;
         });
 
-        elem.bind("plotselected", function () {
+        elem.bind("plotselected", function (event, ranges) {
+          $log.log(event);
+          $log.log(ranges);
           removeContextMenu();
           contextMenu = $compile(
             '<grafana-analytic-graph-context-menu>' +
