@@ -70,7 +70,11 @@ function (angular, _) {
             getConfig(function(config) {
               var url = jsonData.analyticEngineURL;
               $http.post(url + '/pattern/threshold', {
-                metric
+                threshold: [{target: scope.metricName}]
+              }).then(function(response) {
+                console.log(response);
+              }, function(response) {
+                console.log(response);
               });
             });
 
