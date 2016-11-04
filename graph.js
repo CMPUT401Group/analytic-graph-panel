@@ -471,7 +471,8 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
         elem.bind("plotselected", function (event, ranges) {
           void(event);  // So jslint wont complain.
 
-          if (data.length == 0) {
+          if (data.length === 0) {
+            void(null);
             // todo: Do something if data is empty.
           }
 
