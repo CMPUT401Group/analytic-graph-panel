@@ -479,7 +479,7 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
 
           removeContextMenu();
           contextMenu = $compile(
-            '<grafana-analytic-graph-context-menu data-metric-name="metricNameAttr" data-time-range="timeRangeAttr">' +
+            '<grafana-analytic-graph-context-menu data-metric-name="{{metricNameAttr}}" data-time-range="{{timeRangeAttr}}">' +
             '</grafana-analytic-graph-context-menu>')(scope);
           elem.append(contextMenu);
         });
