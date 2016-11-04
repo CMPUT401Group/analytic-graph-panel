@@ -68,7 +68,7 @@ function (angular, _) {
             }
 
             getConfig(function(config) {
-              var url = jsonData.analyticEngineURL;
+              var url = config.jsonData.analyticEngineURL;
               $http.post(url + '/pattern/threshold', {
                 threshold: [{target: scope.metricName}]
               }).then(function(response) {
