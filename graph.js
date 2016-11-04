@@ -471,13 +471,15 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
         elem.bind("plotselected", function (event, ranges) {
           void(event);  // So jslint wont complain.
 
-          var metricName = data.alias;
+          if (data.length == 0) {
+            // todo: Do something if data is empty.
+          }
+
+          var metricName = data[0].alias;
           var timeRange = ranges.xaxis;
 
           scope.metricNameAttr = metricName;
           scope.timeRangeAttr = timeRange;
-
-          $log.log(data);
 
           removeContextMenu();
           contextMenu = $compile(

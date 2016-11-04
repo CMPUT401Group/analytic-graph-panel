@@ -7,7 +7,7 @@ function (angular, _) {
 
   var module = angular.module('grafana.directives');
 
-  module.directive('grafanaAnalyticGraphContextMenu', function ($log, $modal, $q, $rootScope, backendSrv) {
+  module.directive('grafanaAnalyticGraphContextMenu', function ($log, $modal, $q, $rootScope, $http, backendSrv) {
     return {
       restrict: 'E',
       template: '<div class="dropdown open">' +
@@ -66,6 +66,13 @@ function (angular, _) {
             if (_.isNull(markThresholdModalScope.thresholdRule)) {
               return;
             }
+
+            getConfig(function(config) {
+              var url = jsonData.analyticEngineURL;
+              $http.post(url + '/pattern/threshold', {
+                metric
+              });
+            });
 
             // TODO: Create a threshold object here and send it to analytic engine.
             // TODO: A popup somewhere indicating success or failure.
