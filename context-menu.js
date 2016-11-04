@@ -17,7 +17,13 @@ function (angular, _) {
       '    <li><a tabindex="-1" href="#">Mark Linear Correlation</a></li>' +
       '  </ul>' +
       '</div>',
+      scope: {
+        metricName: '@',
+        timeRange: '@'
+      },
       link: function (scope) {
+        $log.log(scope.metricName);
+        $log.log(scope.timeRange);
         var analyticGraphAppConfig = null,
           markThresholdModalScope = null;
         updateAnalyticGraphAppConfig();

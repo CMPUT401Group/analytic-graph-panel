@@ -471,13 +471,15 @@ function (angular, $, moment, _, kbn, GraphTooltip) {
         elem.bind("plotselected", function (event, ranges) {
           void(event);  // So jslint wont complain.
 
-          $log.log(data);
+          var metricName = data.alias;
           var timeRange = ranges.xaxis;
-          void(timeRange);
+
+          scope.metricNameAttr = metricName;
+          scope.timeRangeAttr = timeRange;
 
           removeContextMenu();
           contextMenu = $compile(
-            '<grafana-analytic-graph-context-menu>' +
+            '<grafana-analytic-graph-context-menu data-metric-name="metricNameAttr" data-time-range="timeRangeAttr">' +
             '</grafana-analytic-graph-context-menu>')(scope);
           elem.append(contextMenu);
         });
